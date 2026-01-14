@@ -14,4 +14,11 @@ form.addEventListener("submit", function (event) {
   li.textContent = textoRotina;
   lista.appendChild(li);
   input.value = "";
+
+  li.addEventListener("click", function () {
+    li.classList.toggle("concluida");
+  });
+
+  li.appendChild(li);
+  input.value = "";
 });
