@@ -1,6 +1,7 @@
 const form = document.getElementById("form-rotina");
 const input = document.getElementById("addrotina");
 const lista = document.getElementById("lista-rotinas");
+const inputHorario = document.getElementById("horario");
 
 let tarefas = [];
 
@@ -13,7 +14,7 @@ function renderizarTarefas() {
 
   tarefas.forEach(function (tarefa, index) {
     const li = document.createElement("li");
-    li.textContent = tarefa.texto;
+    li.textContent = `${tarefa.horario} - ${tarefa.texto}`;
 
     if (tarefa.concluida) {
       li.classList.add("concluida");
@@ -52,12 +53,14 @@ form.addEventListener("submit", function (event) {
 
   tarefas.push({
     texto: textoRotina,
+    horario: inputHorario.value,
     concluida: false,
   });
 
   salvarTarefas();
   renderizarTarefas();
   input.value = "";
+  inputHorario.value = "";
 });
 
 const tarefasSalvas = localStorage.getItem("tarefas");
