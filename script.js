@@ -3,6 +3,7 @@ const input = document.getElementById("addrotina");
 const lista = document.getElementById("lista-rotinas");
 const inputHorario = document.getElementById("horario");
 const selectDia = document.getElementById("dia");
+const filtroDia = document.getElementById("filtro-dia");
 
 let tarefas = [];
 
@@ -23,7 +24,13 @@ function renderizarTarefas() {
     "Domingo",
   ];
 
+  const diaSelecionado = filtroDia.value;
+
   dias.forEach(function (dia) {
+    if (diaSelecionado !== "Todos" && dia !== diaSelecionado) {
+      return;
+    }
+
     const tituloDia = document.createElement("h2");
     tituloDia.textContent = dia;
 
@@ -98,3 +105,7 @@ if (tarefasSalvas) {
   tarefas = JSON.parse(tarefasSalvas);
   renderizarTarefas();
 }
+
+filtroDia.addEventListener("change", function () {
+  renderizarTarefas();
+});
